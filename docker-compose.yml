@@ -61,7 +61,7 @@ services:
       - postgresql-data:/var/lib/postgresql/data
 
   postgres-exporter:
-    image: bitnami/postgres-exporter:latest
+    image: prometheuscommunity/postgres-exporter:v0.9.0
     ports:
       - 9187:9187
     environment:
