@@ -15,3 +15,7 @@ scrape_configs:
     static_configs:
       - targets:
         - 'node-exporter:9100' # node-exporter on http://localhost:9100/metrics
+  - job_name: postgres-exporter
+    static_configs:
+      - targets:
+        - 'postgres-exporter:9187' # node-exporter on http://localhost:9187/metrics

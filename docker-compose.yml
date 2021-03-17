@@ -48,6 +48,28 @@ services:
     restart: always
 
 
+  postgres:
+    image: library/postgres:9.6
+    environment:
+      POSTGRES_DB: 'db_name'
+      POSTGRES_USER: 'db_user'
+      POSTGRES_PASSWORD: 'db_pass'
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/dump:/app/dump
+      - postgresql-data:/var/lib/postgresql/data
+
+  postgres-exporter:
+    image: bitnami/postgres-exporter:latest
+    ports:
+      - 9187:9187
+    environment:
+      DATA_SOURCE_NAME: "postgresql://db_user:db_pass@postgres:5432/db_name?sslmode=disable"
+    depends_on:
+      - postgres
+
 volumes:
-  grafana-data:
-  grafana-prov:
+  grafana-data: ~
+  grafana-prov: ~
+  postgresql-data: ~

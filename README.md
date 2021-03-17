@@ -6,6 +6,13 @@ Automatic setup one datasource - **prometheus:9090**
 
 Automatic setup two targets - **prometheus:9090** and **node-exporter:9100**
 
+### Requirements
+
+* Ubuntu >=16
+* Docker
+* Docker-compose
+* Any web browser
+
 ### How to run
 
 1. Run containers
@@ -27,5 +34,4 @@ Automatic setup two targets - **prometheus:9090** and **node-exporter:9100**
 
 1. Create or import new dashboard
 2. Export it to JSON config
-3. Save it to file in **.deploy/grafana/dashboards** directory.
-   Filename should not contain spaces!
+3. Save it to file in **.deploy/grafana/dashboards** directory. Filename should not contain spaces!
