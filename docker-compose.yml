@@ -85,6 +85,24 @@ services:
       - redis
 
 
+  nginx:
+    image: library/nginx:latest
+    expose:
+      - 80
+    ports:
+      - 80:80
+    volumes:
+      - ./.deploy/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:0.8.0
+    command: "-nginx.scrape-uri http://nginx:80/stub_status"
+    ports:
+      - 9113:9113
+    depends_on:
+      - nginx
+
+
 volumes:
   grafana-data: ~
   grafana-prov: ~
