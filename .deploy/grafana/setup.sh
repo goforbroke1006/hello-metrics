@@ -66,7 +66,6 @@ install_dashboards() {
       echo "Installing dashboard ${dashboard}"
 
       echo "{\"dashboard\": `cat $dashboard`}" > "${dashboard}.wrapped"
-      ls -lah ${DASHBOARDS_PATH}
 
       if grafana_api POST /api/dashboards/db "" "${dashboard}.wrapped"; then
         echo "installed ok"
