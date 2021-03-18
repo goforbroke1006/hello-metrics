@@ -69,6 +69,22 @@ services:
     depends_on:
       - postgres
 
+
+  redis:
+    image: redis:6.2.1
+    ports:
+      - 6379:6379
+
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.17.1
+    ports:
+      - 9121:9121
+    environment:
+      REDIS_ADDR: redis://redis:6379
+    depends_on:
+      - redis
+
+
 volumes:
   grafana-data: ~
   grafana-prov: ~

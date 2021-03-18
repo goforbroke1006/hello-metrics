@@ -56,6 +56,8 @@ install_datasources() {
 }
 
 install_dashboards() {
+  chmod 0777 -R ${DASHBOARDS_PATH}/
+
   local dashboard
 
   for dashboard in ${DASHBOARDS_PATH}/*.json
@@ -64,6 +66,7 @@ install_dashboards() {
       echo "Installing dashboard ${dashboard}"
 
       echo "{\"dashboard\": `cat $dashboard`}" > "${dashboard}.wrapped"
+      ls -lah ${DASHBOARDS_PATH}
 
       if grafana_api POST /api/dashboards/db "" "${dashboard}.wrapped"; then
         echo "installed ok"
